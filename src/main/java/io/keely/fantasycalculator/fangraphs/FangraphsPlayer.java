@@ -5,16 +5,23 @@
  **************************************************************************/
 package io.keely.fantasycalculator.fangraphs;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.apache.commons.csv.CSVRecord;
 
 import com.google.common.base.MoreObjects;
 
+@Entity
+@Table(name = "fangraphs")
 public class FangraphsPlayer {
 
-    private final String id;
-    private final String name;
-    private final String team;
-    private final double adp;
+    @Id
+    private String id;
+    private String name;
+    private String team;
+    private double adp;
 
     public FangraphsPlayer(String id, String name, String team, double adp) {
         this.id = id;
@@ -22,6 +29,11 @@ public class FangraphsPlayer {
         this.team = team;
         this.adp = adp;
     }
+
+    /**
+     * Default c-tor for hibernate.
+     */
+    FangraphsPlayer() {}
 
     public FangraphsPlayer(CSVRecord record) {
         this.id = record.get("playerid");
@@ -45,6 +57,22 @@ public class FangraphsPlayer {
 
     public double getAdp() {
         return adp;
+    }
+
+    void setId(String id) {
+        this.id = id;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    void setTeam(String team) {
+        this.team = team;
+    }
+
+    void setAdp(double adp) {
+        this.adp = adp;
     }
 
     @Override

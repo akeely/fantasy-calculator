@@ -5,33 +5,32 @@
  **************************************************************************/
 package io.keely.fantasycalculator.mapper;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.apache.commons.csv.CSVRecord;
 
 import com.google.common.base.MoreObjects;
 
+@Entity
+@Table(name = "players")
 public class Player {
 
-    private final String id;
-    private final String name;
-    private final String fangraphsId;
-    private final String fangraphsName;
-    private final String yahooId;
-    private final String yahooName;
-    private final String espnId;
-    private final String espnName;
+    @Id
+    private String id;
+    private String name;
+    private String fangraphsId;
+    private String fangraphsName;
+    private String yahooId;
+    private String yahooName;
+    private String espnId;
+    private String espnName;
 
-    public Player(String id, String name, String fangraphsId, String fangraphsName, String yahooId, String yahooName,
-            String espnId, String espnName) {
-
-        this.id = id;
-        this.name = name;
-        this.fangraphsId = fangraphsId;
-        this.fangraphsName = fangraphsName;
-        this.yahooId = yahooId;
-        this.yahooName = yahooName;
-        this.espnId = espnId;
-        this.espnName = espnName;
-    }
+    /**
+     * Empty c-tor for hibernate
+     */
+    Player() { }
 
     public Player(CSVRecord record) {
 
@@ -75,6 +74,38 @@ public class Player {
 
     public String getEspnName() {
         return espnName;
+    }
+
+    void setId(String id) {
+        this.id = id;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    void setFangraphsId(String fangraphsId) {
+        this.fangraphsId = fangraphsId;
+    }
+
+    void setFangraphsName(String fangraphsName) {
+        this.fangraphsName = fangraphsName;
+    }
+
+    void setYahooId(String yahooId) {
+        this.yahooId = yahooId;
+    }
+
+    void setYahooName(String yahooName) {
+        this.yahooName = yahooName;
+    }
+
+    void setEspnId(String espnId) {
+        this.espnId = espnId;
+    }
+
+    void setEspnName(String espnName) {
+        this.espnName = espnName;
     }
 
     @Override
